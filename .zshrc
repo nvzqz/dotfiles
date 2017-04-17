@@ -41,6 +41,10 @@ man() {
             man "$@"
 }
 
+exists() {
+    type "$1" > /dev/null ;
+}
+
 #Aliases
 alias ls='ls --color=always'
 alias a='ls -A'
@@ -51,7 +55,9 @@ alias netdown='sudo ifconfig en0 down'
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+if exists rustc; then
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
 
 # Go
 export GOPATH="$HOME/go"
