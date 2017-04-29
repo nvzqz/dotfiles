@@ -74,6 +74,10 @@ if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 UNAME=`uname`
 
 if [[ "$UNAME" == "Darwin" ]]; then
+    #---------------------------------------------------------------------------
+    # ~~~~~ macOS ~~~~~
+    #---------------------------------------------------------------------------
+
     # ZSH syntax highlighting
     source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 
@@ -107,8 +111,26 @@ if [[ "$UNAME" == "Darwin" ]]; then
     alias appcastdate='date --rfc-2822'
 
 elif [[ "$UNAME" == "Linux" ]]; then
+    #---------------------------------------------------------------------------
+    # ~~~~~ Linux ~~~~~
+    #---------------------------------------------------------------------------
+
+    if [[ "$(cat /proc/sys/kernel/osrelease)" =~ .*Microsoft.* ]]; then
+        #-----------------------------------------------------------------------
+        # ~~~~~ Linux on Windows ~~~~~
+        #-----------------------------------------------------------------------
+
+        # Run windows command using cmd.exe
+        alias wcmd='/mnt/c/Windows/System32/cmd.exe /C'
+
+        # VS Code
+        alias code='wcmd code'
+
+    else
+        alias screenfetch='screenfetch -st'
+    fi
+
     # ZSH syntax highlighting
     source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-    alias screenfetch='screenfetch -st'
 fi
