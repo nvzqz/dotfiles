@@ -69,12 +69,13 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 # Swift
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
-source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-
 # OS-specific settings:
 UNAME=`uname`
 
 if [[ "$UNAME" == "Darwin" ]]; then
+    # ZSH syntax highlighting
+    source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+
     # Add coreutils to PATH
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -105,5 +106,8 @@ if [[ "$UNAME" == "Darwin" ]]; then
     alias appcastdate='date --rfc-2822'
 
 elif [[ "$UNAME" == "Linux" ]]; then
+    # ZSH syntax highlighting
+    source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
     alias screenfetch='screenfetch -st'
 fi
