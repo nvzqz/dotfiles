@@ -1,0 +1,14 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.associations": {
+        "*.rs": "rust"
+    },
+    "editor.rulers": [80,120],
+    "window.openFilesInNewWindow": false,
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.dragAndDrop": true,
+    "workbench.colorTheme": "One Monokai",
+    "workbench.iconTheme": "material-icon-theme"
+}
