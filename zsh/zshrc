@@ -43,10 +43,10 @@ man() {
 }
 
 exists() {
-    type "$1" > /dev/null ;
+    type "$1" > /dev/null
 }
 
-#Aliases
+# Aliases
 alias ls='ls --color=always'
 alias a='ls -A'
 alias e='$EDITOR'
@@ -68,7 +68,7 @@ export PATH="$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # Swift
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+if exists swiftenv; then eval "$(swiftenv init -)"; fi
 
 # OS-specific settings:
 UNAME=`uname`
