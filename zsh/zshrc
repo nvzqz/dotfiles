@@ -29,6 +29,11 @@ fi
 export PATH=/usr/local/bin:$PATH
 export LANG=en_US.UTF-8
 
+# Git subrepo https://github.com/ingydotnet/git-subrepo
+if [ -d "$HOME/git-subrepo" ]; then
+    source "$HOME/git-subrepo/.rc"
+fi
+
 # Man syntax highlighting
 man() {
     env \
