@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
 # Zsh runcom file
 
+fpath+=~/.zfunc
+
 # oh-my-zsh (https://github.com/robbyrussell/oh-my-zsh)
 if [ -d "$HOME/.oh-my-zsh" ]; then
     # Path to oh-my-zsh installation
-    fpath+=~/.zfunc
     export ZSH=$HOME/.oh-my-zsh
 
     # Theme
