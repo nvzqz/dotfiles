@@ -91,7 +91,7 @@ if [[ "$UNAME" == "Darwin" ]]; then
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
     # Set editor to Visual Studio Code
-    export EDITOR='code'
+    if exists code; then export EDITOR='code'; fi
 
     # brew cask options
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
