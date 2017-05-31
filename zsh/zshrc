@@ -73,6 +73,10 @@ export PATH="$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin"
 # Haskell
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
+# Node
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # Swift
 if exists swiftenv; then eval "$(swiftenv init -)"; fi
 
