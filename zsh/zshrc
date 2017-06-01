@@ -52,10 +52,17 @@ exists() {
     type "$1" > /dev/null
 }
 
+e() {
+    if [ $# -eq 0 ]; then
+        $EDITOR .
+    else
+        $EDITOR $@
+    fi
+}
+
 # Aliases
 alias ls='ls --color=always'
 alias a='ls -A'
-alias e='$EDITOR'
 alias please='sudo $(fc -ln -1)'
 alias netup='sudo ifconfig en0 up'
 alias netdown='sudo ifconfig en0 down'
