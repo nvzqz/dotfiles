@@ -3,6 +3,9 @@
 
 fpath+=~/.zfunc
 
+# Source argument on the condition that it exists
+condsource() { if [ -e $1 ]; then source $1; fi }
+
 # oh-my-zsh (https://github.com/robbyrussell/oh-my-zsh)
 if [ -d "$HOME/.oh-my-zsh" ]; then
     # Path to oh-my-zsh installation
@@ -31,9 +34,7 @@ export PATH=/usr/local/bin:$PATH
 export LANG=en_US.UTF-8
 
 # Git subrepo https://github.com/ingydotnet/git-subrepo
-if [ -d "$HOME/git-subrepo" ]; then
-    source "$HOME/git-subrepo/.rc"
-fi
+condsource "$HOME/git-subrepo/.rc"
 
 # Man syntax highlighting
 man() {
@@ -99,7 +100,7 @@ if [[ "$UNAME" == "Darwin" ]]; then
     #---------------------------------------------------------------------------
 
     # ZSH syntax highlighting
-    source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+    condsource '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 
     # Add coreutils to PATH
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -151,6 +152,6 @@ elif [[ "$UNAME" == "Linux" ]]; then
     fi
 
     # ZSH syntax highlighting
-    source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 fi
