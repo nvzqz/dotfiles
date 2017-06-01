@@ -67,6 +67,7 @@ alias a='ls -A'
 alias please='sudo $(fc -ln -1)'
 alias netup='sudo ifconfig en0 up'
 alias netdown='sudo ifconfig en0 down'
+alias reload='source ~/.zshrc'
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
