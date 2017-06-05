@@ -54,11 +54,11 @@ exists() {
 }
 
 e() {
-    if [ $# -eq 0 ]; then
-        $EDITOR .
-    else
-        $EDITOR $@
-    fi
+    if [ $# -eq 0 ]; then $EDITOR .; else $EDITOR $@; fi
+}
+
+ez() {
+    e "$(realpath $HOME/.zshrc)"
 }
 
 # Aliases
