@@ -11,10 +11,24 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
     # Path to oh-my-zsh installation
     export ZSH=$HOME/.oh-my-zsh
 
-    # Theme
-    ZSH_THEME="agnoster"
+    # Returns whether the theme exists
+    theme_exists() {
+        [ -e "$ZSH/custom/themes/$1.zsh-theme" ] || [ -e "$ZSH/themes/$1.zsh-theme" ]
+    }
 
-    # Other favorites:
+    # Sets the theme to the first one that exists
+    set_theme() {
+        for theme in "$@"; do
+            if theme_exists $theme; then
+                ZSH_THEME=$theme
+                break 2
+            fi
+        done
+    }
+
+    set_theme "spaceship" "agnoster"
+
+    # Other favorite themes:
     # "gianu"
     # "minimal"
     # "dst"
