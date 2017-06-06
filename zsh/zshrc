@@ -6,6 +6,26 @@ fpath+=~/.zfunc
 # Source argument on the condition that it exists
 condsource() { if [ -e $1 ]; then source $1; fi }
 
+exists() {
+    type "$1" > /dev/null
+}
+
+e() {
+    if [ $# -eq 0 ]; then $EDITOR .; else $EDITOR $@; fi
+}
+
+ez() {
+    e "$(realpath $HOME/.zshrc)"
+}
+
+# Man syntax highlighting
+man() {
+    env LESS_TERMCAP_mb=$'\e[1;31m' LESS_TERMCAP_md=$'\e[1;31m' LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' LESS_TERMCAP_so=$'\e[1;44;33m' LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[1;32m' \
+    man "$@"
+}
+
 # oh-my-zsh (https://github.com/robbyrussell/oh-my-zsh)
 if [ -d "$HOME/.oh-my-zsh" ]; then
     # Path to oh-my-zsh installation
@@ -49,31 +69,6 @@ export LANG=en_US.UTF-8
 
 # Git subrepo https://github.com/ingydotnet/git-subrepo
 condsource "$HOME/git-subrepo/.rc"
-
-# Man syntax highlighting
-man() {
-    env \
-        LESS_TERMCAP_mb=$'\e[1;31m' \
-        LESS_TERMCAP_md=$'\e[1;31m' \
-        LESS_TERMCAP_me=$'\e[0m' \
-        LESS_TERMCAP_se=$'\e[0m' \
-        LESS_TERMCAP_so=$'\e[1;44;33m' \
-        LESS_TERMCAP_ue=$'\e[0m' \
-        LESS_TERMCAP_us=$'\e[1;32m' \
-            man "$@"
-}
-
-exists() {
-    type "$1" > /dev/null
-}
-
-e() {
-    if [ $# -eq 0 ]; then $EDITOR .; else $EDITOR $@; fi
-}
-
-ez() {
-    e "$(realpath $HOME/.zshrc)"
-}
 
 # Aliases
 alias ls='ls --color=always'
