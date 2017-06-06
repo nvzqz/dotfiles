@@ -30,30 +30,6 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
     # Path to oh-my-zsh installation
     export ZSH=$HOME/.oh-my-zsh
 
-    # Returns whether the theme exists
-    theme_exists() {
-        [ -e "$ZSH/custom/themes/$1.zsh-theme" ] || [ -e "$ZSH/themes/$1.zsh-theme" ]
-    }
-
-    # Sets the theme to the first one that exists
-    set_theme() {
-        for theme in "$@"; do
-            if theme_exists $theme; then
-                ZSH_THEME=$theme
-                break 2
-            fi
-        done
-    }
-
-    set_theme "spaceship" "agnoster"
-
-    # Other favorite themes:
-    # "gianu"
-    # "minimal"
-    # "dst"
-    # "lambda"
-    # "bureau"
-
     # How often to auto-update (in days)
     export UPDATE_ZSH_DAYS=7
 
@@ -127,11 +103,30 @@ condsource "$HOME/git-subrepo/.rc"
 # ~~~~~ ZSH Features ~~~~~
 #-------------------------------------------------------------------------------
 
-# ZSH syntax highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)
-condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+export ZPLUG_HOME="$HOME/zplug"
+if [ -d $ZPLUG_HOME ]; then
+    source "$ZPLUG_HOME/init.zsh"
 
-# ZSH auto suggestions (https://github.com/zsh-users/zsh-autosuggestions)
-condsource "$HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-autosuggestions"
+
+    zplug 'denysdovhan/spaceship-zsh-theme', as:theme
+
+    # Install plugins if there are plugins that have not been installed
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        else
+            echo
+        fi
+    fi
+
+    zplug load
+else
+    condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    condsource "$HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
 # OS-specific settings:
 UNAME=`uname`
