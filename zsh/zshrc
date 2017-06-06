@@ -109,6 +109,9 @@ if exists swiftenv; then eval "$(swiftenv init -)"; fi
 # ZSH syntax highlighting
 condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# ZSH auto suggestions
+condsource "$HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 # OS-specific settings:
 UNAME=`uname`
 
