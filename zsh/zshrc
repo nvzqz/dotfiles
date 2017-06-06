@@ -106,6 +106,9 @@ fi
 # Swift
 if exists swiftenv; then eval "$(swiftenv init -)"; fi
 
+# ZSH syntax highlighting
+condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 # OS-specific settings:
 UNAME=`uname`
 
@@ -113,9 +116,6 @@ if [[ "$UNAME" == "Darwin" ]]; then
     #---------------------------------------------------------------------------
     # ~~~~~ macOS ~~~~~
     #---------------------------------------------------------------------------
-
-    # ZSH syntax highlighting
-    condsource '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 
     # Add coreutils to PATH
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -165,8 +165,4 @@ elif [[ "$UNAME" == "Linux" ]]; then
     else
         alias screenfetch='screenfetch -st'
     fi
-
-    # ZSH syntax highlighting
-    condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 fi
