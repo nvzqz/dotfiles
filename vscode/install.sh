@@ -9,7 +9,7 @@ if hash code > /dev/null; then
         VSCODE_HOME="$HOME/.config/Code"
     fi
 
-    cp "$DIR/settings.json" "$VSCODE_HOME/settings.json"
+    cp "$DIR/settings.json" "$VSCODE_HOME/User/settings.json"
 
     # Created with `code --list-extensions > extensions.txt`
     while read extension; do
