@@ -92,6 +92,9 @@ if [ -d $ANTIGEN_HOME ]; then
     antigen use oh-my-zsh
 
     antigen bundle cargo
+    antigen bundle gitignore
+    antigen bundle pod
+    antigen bundle xcode
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle zsh-users/zsh-autosuggestions
 
