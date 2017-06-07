@@ -6,17 +6,17 @@
 #-------------------------------------------------------------------------------
 
 # Source argument on the condition that it exists
-condsource() { if [ -e $1 ]; then source $1; fi }
+function condsource() { if [ -e $1 ]; then source $1; fi }
 
-exists() {
+function exists() {
     type "$1" > /dev/null
 }
 
-e() {
+function e() {
     if [ $# -eq 0 ]; then $EDITOR .; else $EDITOR $@; fi
 }
 
-ez() {
+function ez() {
     e "$(realpath $HOME/.zshrc)"
 }
 
