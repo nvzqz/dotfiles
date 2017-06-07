@@ -103,7 +103,7 @@ if [ -d $ANTIGEN_HOME ]; then
         antigen bundle zsh-users/zsh-completions
         antigen bundle zsh-users/zsh-syntax-highlighting
 
-        antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+        antigen theme denysdovhan/spaceship-zsh-theme
 
         antigen apply
     fi
