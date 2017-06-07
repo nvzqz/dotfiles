@@ -123,9 +123,17 @@ if [[ "$UNAME" == "Darwin" ]]; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
 
-    # Hide/show desktop
-    alias hidedesktop='defaults write com.apple.finder CreateDesktop false; killall Finder'
-    alias showdesktop='defaults write com.apple.finder CreateDesktop true; killall Finder'
+    function finderdefaults() {
+        defaults write com.apple.finder $1 $2 && killall Finder
+    }
+
+    # Show/hide desktop
+    alias showdesktop='finderdefaults CreateDesktop true'
+    alias hidedesktop='finderdefaults CreateDesktop false'
+
+    # Show/hide hidden files
+    alias showfiles='finderdefaults AppleShowAllFiles true'
+    alias hidefiles='finderdefaults AppleShowAllFiles false'
 
     # Remove all '.DS_Store' files in the current directory
     alias rmds='find . -name ".DS_Store" -delete'
