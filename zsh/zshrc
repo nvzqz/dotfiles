@@ -149,7 +149,6 @@ if [[ "$UNAME" == "Darwin" ]]; then
     alias chrome='open -a "Google Chrome"'
     alias safari='open -a "Safari"'
     alias xcode='open -a "Xcode"'
-    alias preview='open -a "Preview"'
 
     # Current date for sparkle appcast
     alias appcastdate='date --rfc-2822'
