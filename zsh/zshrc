@@ -94,6 +94,7 @@ if [ -d $ANTIGEN_HOME ]; then
         antigen bundle cargo
         antigen bundle gitignore
         antigen bundle pod
+        antigen bundle vagrant
         antigen bundle xcode
 
         antigen bundle b4b4r07/enhancd
