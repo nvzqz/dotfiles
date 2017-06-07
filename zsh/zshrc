@@ -85,26 +85,27 @@ condsource "$HOME/git-subrepo/.rc"
 #-------------------------------------------------------------------------------
 
 export ANTIGEN_HOME="$HOME/.antigen"
-
 if [ -d $ANTIGEN_HOME ]; then
-    source "$ANTIGEN_HOME/antigen.zsh"
+    if [ ! $ZSHRC_RAN ]; then
+        source "$ANTIGEN_HOME/antigen.zsh"
 
-    antigen use oh-my-zsh
+        antigen use oh-my-zsh
 
-    antigen bundle cargo
-    antigen bundle gitignore
-    antigen bundle pod
-    antigen bundle xcode
+        antigen bundle cargo
+        antigen bundle gitignore
+        antigen bundle pod
+        antigen bundle xcode
 
-    antigen bundle b4b4r07/enhancd
+        antigen bundle b4b4r07/enhancd
 
-    antigen bundle zsh-users/zsh-autosuggestions
-    antigen bundle zsh-users/zsh-completions
-    antigen bundle zsh-users/zsh-syntax-highlighting
+        antigen bundle zsh-users/zsh-autosuggestions
+        antigen bundle zsh-users/zsh-completions
+        antigen bundle zsh-users/zsh-syntax-highlighting
 
-    antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+        antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
-    antigen apply
+        antigen apply
+    fi
 else
     condsource "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     condsource "$HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -167,3 +168,5 @@ elif [[ "$UNAME" == "Linux" ]]; then
         alias screenfetch='screenfetch -st'
     fi
 fi
+
+export ZSHRC_RAN='*'
