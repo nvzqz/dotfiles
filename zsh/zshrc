@@ -103,13 +103,12 @@ else
     condsource "$HOME/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-# OS-specific settings:
+#---------------------------------------------------------------------------
+# ~~~~~ OS-Specific ~~~~~
+#---------------------------------------------------------------------------
 UNAME=`uname`
 
 if [[ "$UNAME" == "Darwin" ]]; then
-    #---------------------------------------------------------------------------
-    # ~~~~~ macOS ~~~~~
-    #---------------------------------------------------------------------------
 
     # Add coreutils to PATH
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -141,14 +140,7 @@ if [[ "$UNAME" == "Darwin" ]]; then
     alias appcastdate='date --rfc-2822'
 
 elif [[ "$UNAME" == "Linux" ]]; then
-    #---------------------------------------------------------------------------
-    # ~~~~~ Linux ~~~~~
-    #---------------------------------------------------------------------------
-
     if [[ "$(cat /proc/sys/kernel/osrelease)" =~ .*Microsoft.* ]]; then
-        #-----------------------------------------------------------------------
-        # ~~~~~ Linux on Windows ~~~~~
-        #-----------------------------------------------------------------------
 
         # Run windows command using cmd.exe
         alias wcmd='/mnt/c/Windows/System32/cmd.exe /C'
