@@ -69,6 +69,11 @@ else
     }
 fi
 
+DOTFILES=$(realpath $(dirname $(realpath ~/.zshrc))/..)
+if [[ $DOTFILES == *dotfiles ]]; then
+    export PATH="$DOTFILES/bin:$PATH"
+fi
+
 #-------------------------------------------------------------------------------
 # ~~~~~ Aliases ~~~~~
 #-------------------------------------------------------------------------------
