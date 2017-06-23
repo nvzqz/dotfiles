@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ `uname` -eq "Darwin" ]] && [[ $# -gt 0 ]]; then
     defaults write com.apple.screencapture location "$(realpath $1)" && killall SystemUIServer
 fi
