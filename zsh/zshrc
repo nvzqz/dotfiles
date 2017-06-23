@@ -13,7 +13,7 @@ function exists() {
 }
 
 function e() {
-    if [ $# -eq 0 ]; then $EDITOR .; else $EDITOR $@; fi
+    $EDITOR "${@:-.}"
 }
 
 function ez() {
