@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+    PROMPT="Would you like to continue? (y/n)"
+else
+    PROMPT="$1"
+fi
+
+read -n1 -p "$PROMPT " yn
+case $yn in
+    [Yy] ) RC=0;;
+    [Nn] ) RC=1;;
+    * ) RC=2;;
+esac
+
+echo; exit "$RC"
