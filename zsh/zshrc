@@ -9,7 +9,7 @@
 function condsource() { if [ -e $1 ]; then source $1; fi }
 
 function exists() {
-    hash "$1" > /dev/null
+    hash "$1" &> /dev/null
 }
 
 function e() {
