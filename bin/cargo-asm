@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# About: Emits assembly using Intel syntax
+# Usage: `cargo asm $args`
+
+# First arg is 'asm'
+shift
+
+cargo rustc --release $@ -- --emit asm -C llvm-args=-x86-asm-syntax=intel
