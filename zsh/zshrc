@@ -151,6 +151,7 @@ if [[ "$UNAME" == "Darwin" ]]; then
     alias rmds='find . -name ".DS_Store" -delete'
 
     # App shortcuts
+    alias firefox='open -a "Firefox"'
     alias chrome='open -a "Google Chrome"'
     alias safari='open -a "Safari"'
     alias xcode='open -a "Xcode"'
