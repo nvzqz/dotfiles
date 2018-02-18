@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# About: Alias to `cargo-install-update`
+# Usage: `cargo upgrade [-a | crate1  crate 2 ...]`
+
+# First arg is 'upgrade'
+shift
+
+if [[ -z "$1" ]]; then
+    cargo install-update -a
+else
+    cargo install-update "$@"
+fi
