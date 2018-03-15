@@ -145,6 +145,9 @@ if [[ "$UNAME" == "Darwin" ]]; then
         defaults write com.apple.finder $1 $2 && killall Finder
     }
 
+    # Python script to join PDFs
+    alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
     # Show/hide desktop
     alias showdesktop='finderdefaults CreateDesktop true'
     alias hidedesktop='finderdefaults CreateDesktop false'
