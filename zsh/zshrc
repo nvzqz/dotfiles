@@ -63,6 +63,10 @@ fi
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export LANG=en_US.UTF-8
 
+if exists rbenv; then
+    export PATH="$HOME/.rbenv/shims:$PATH"
+fi
+
 if exists most; then
     export PAGER='most'
 else
@@ -85,11 +89,16 @@ fi
 #-------------------------------------------------------------------------------
 
 alias ls='ls --color=always'
-alias a='ls -A'
 alias please='sudo $(fc -ln -1)'
 alias netup='sudo ifconfig en0 up'
 alias netdown='sudo ifconfig en0 down'
 alias reload='source ~/.zshrc'
+
+if exists exa; then
+    alias a='exa -a'
+else
+    alias a='ls -A'
+fi
 
 #-------------------------------------------------------------------------------
 # ~~~~~ Languages & Tools ~~~~~
@@ -104,6 +113,9 @@ fi
 # Go
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin"
+
+## Go package manager
+condsource ~/.gvm/scripts/gvm
 
 # Haskell
 export PATH="$HOME/Library/Haskell/bin:$PATH"
@@ -120,6 +132,9 @@ if exists swiftenv; then eval "$(swiftenv init -)"; fi
 
 # Git subrepo https://github.com/ingydotnet/git-subrepo
 condsource "$HOME/git-subrepo/.rc"
+
+# Nix package manager https://nixos.org/nix/
+condsource "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 #-------------------------------------------------------------------------------
 # ~~~~~ OS-Specific ~~~~~
