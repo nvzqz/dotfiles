@@ -30,6 +30,10 @@ condsource "$HOME/secrets.sh"
 # ~~~~~ ZSH Features ~~~~~
 #-------------------------------------------------------------------------------
 
+if exists starship; then
+    eval "$(starship init zsh)"
+fi
+
 export ANTIGEN_HOME="$HOME/.antigen"
 if [ -d $ANTIGEN_HOME ]; then
     source "$ANTIGEN_HOME/antigen.zsh"
@@ -48,7 +52,9 @@ if [ -d $ANTIGEN_HOME ]; then
     antigen bundle zsh-users/zsh-completions
     antigen bundle zsh-users/zsh-syntax-highlighting
 
-    antigen theme denysdovhan/spaceship-zsh-theme
+    if ! exists starship; then
+        antigen theme denysdovhan/spaceship-zsh-theme
+    fi
 
     antigen apply
 else
