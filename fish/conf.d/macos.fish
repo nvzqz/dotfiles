@@ -38,6 +38,14 @@ function rmds --description 'remove all .DS_Store files in current directory'
     find . -name .DS_Store -delete
 end
 
+function netup --description 'enable network connectivity on en0'
+    networksetup -setairportpower en0 on
+end
+
+function netdown --description 'disable network connectivity on en0'
+    networksetup -setairportpower en0 off
+end
+
 function chscreen
     defaults write com.apple.screencapture location (realpath $argv[1]) && killall SystemUIServer
 end
