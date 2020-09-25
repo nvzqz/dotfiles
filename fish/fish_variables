@@ -1,4 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR EDITOR:code
+SETUVAR __fish_initialized:3100
 SETUVAR fish_greeting:Happy\x20fishing\x2c\x20Nikolai\x21
