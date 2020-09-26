@@ -8,14 +8,17 @@ set -gp fish_user_paths \
     "$HOME/.rbenv/shims" \
     "$HOME/go/bin"
 
+# https://starship.rs
 if exists starship
     starship init fish | source
 end
 
+# https://the.exa.website
 if exists exa
     alias ls 'exa'
 end
 
+# https://github.com/Schniz/fnm
 if exists fnm
     fnm env --fish --multi | source
 end
