@@ -15,3 +15,7 @@ end
 if exists exa
     alias ls 'exa'
 end
+
+if exists fnm
+    fnm env --fish --multi | source
+end
