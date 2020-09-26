@@ -5,7 +5,8 @@ set -gp fish_user_paths \
     "$HOME/dotfiles/bin" \
     "$HOME/.dotfiles/bin" \
     "$HOME/.cargo/bin" \
-    "$HOME/.rbenv/shims"
+    "$HOME/.rbenv/shims" \
+    "$HOME/go/bin"
 
 if exists starship
     starship init fish | source
