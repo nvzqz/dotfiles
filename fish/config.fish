@@ -20,5 +20,5 @@ end
 
 # https://github.com/Schniz/fnm
 if exists fnm
-    fnm env --fish --multi | source
+    fnm env | source
 end
