@@ -50,6 +50,17 @@ function chscreen
     defaults write com.apple.screencapture location (realpath $argv[1]) && killall SystemUIServer
 end
 
+function cdf --description 'Change to directory of topmost Finder window'
+    set -l target (osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)')
+    if test -n "$target"
+        cd "$target"
+        pwd
+    else
+        echo 'error: No Finder window found' >&2
+        return 1
+    end
+end
+
 # 1st party apps
 alias safari 'open -a Safari'
 alias terminal 'open -a Terminal'
