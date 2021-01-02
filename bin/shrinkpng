@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# About: Shrinks PNG files in-place using pngquant and zopflipng
+# Usage: `shrinkpng file1 file2 file3`
+
+function error {
+    local COLOR_RED='\033[1;91m'
+    local COLOR_RESET='\033[0m'
+
+    >&2 echo -e "${COLOR_RED}error:${COLOR_RESET}" "$@"
+}
+
+function exists() {
+    hash "$1" &> /dev/null
+}
+
+function is-png() {
+    [[ "$(file -b --extension "$1")" =~ .*png.* ]]
+}
+
+if ! exists file; then
+    error "Missing required program 'file'"
+    SHOULD_EXIT=1
+fi
+
+if ! exists pngquant; then
+    error "Missing required program 'pngquant'"
+    SHOULD_EXIT=1
+fi
+
+if ! exists zopflipng; then
+    error "Missing required program 'zopflipng'"
+    SHOULD_EXIT=1
+fi
+
+if [[ "$SHOULD_EXIT" == '1' ]]; then
+    exit 1
+fi
+
+function shrinkpng() {
+    # Check before running tools, in order to produce a good error message.
+    #
+    # Note that this does not exit the script. We want other operations to be
+    # able to succeed.
+    if ! is-png "$1"; then
+        error "File is not a PNG: '$1'"
+        return
+    fi
+
+    local SCRATCH_DIR="$(mktemp -d -t 'shrinkpng')"
+
+    local OUT_PNGQUANT="$SCRATCH_DIR/pngquant.png"
+    local OUT_ZOPFLIPNG="$SCRATCH_DIR/zopflipng.png"
+
+    pngquant --speed 1 --strip --output "$OUT_PNGQUANT" -- "$1"
+    zopflipng -m "$OUT_PNGQUANT" "$OUT_ZOPFLIPNG"
+
+    cp "$OUT_ZOPFLIPNG" "$1"
+}
+
+for file in "$@"; do
+    # Compress each file in the background to make the most of CPU cores.
+    shrinkpng "$file" &
+done
+
+wait
