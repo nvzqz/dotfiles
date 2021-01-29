@@ -2,6 +2,10 @@ if not test (uname -s) = Darwin
     exit
 end
 
+# Append macOS-specific dirs to PATH
+set -ga fish_user_paths \
+    '/Library/Developer/CommandLineTools/usr/bin'
+
 function pbsort --description 'sort lines in pasteboard'
     pbpaste $argv | sort | pbcopy
 end
