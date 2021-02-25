@@ -4,6 +4,7 @@ end
 
 # Append macOS-specific dirs to PATH
 set -ga fish_user_paths \
+    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin' \
     '/Library/Developer/CommandLineTools/usr/bin'
 
 function pbsort --description 'sort lines in pasteboard'
