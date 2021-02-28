@@ -1,5 +1,10 @@
 # Prepend home-relative dirs to PATH
 set -gp fish_user_paths \
+    '/usr/local/bin' \
+    '/usr/bin' \
+    '/bin' \
+    '/usr/sbin' \
+    '/sbin' \
     "$HOME/bin" \
     "$HOME/.bin" \
     "$HOME/dotfiles/bin" \
