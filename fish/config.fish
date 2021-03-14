@@ -1,10 +1,13 @@
-# Prepend home-relative dirs to PATH
+# Prepend system dirs to PATH.
 set -gp fish_user_paths \
     '/usr/local/bin' \
     '/usr/bin' \
     '/bin' \
     '/usr/sbin' \
     '/sbin' \
+
+# Prepend home-relative dirs to PATH. These have priority over the system dirs.
+set -gp fish_user_paths \
     "$HOME/bin" \
     "$HOME/.bin" \
     "$HOME/dotfiles/bin" \
