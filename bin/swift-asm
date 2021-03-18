@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# About: Emits assembly using Intel syntax
+# Usage: `swift-asm $args`
+
+xcrun swiftc "$@" -O -S -static -parse-as-library -Xllvm --x86-asm-syntax=intel
