@@ -6,6 +6,9 @@ set -gp fish_user_paths \
     '/usr/sbin' \
     '/sbin' \
 
+# Prepend Homebrew to PATH.
+set -gp fish_user_paths /opt/homebrew/bin
+
 # Prepend home-relative dirs to PATH. These have priority over the system dirs.
 set -gp fish_user_paths \
     "$HOME/bin" \
