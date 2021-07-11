@@ -33,3 +33,8 @@ end
 if exists fnm
     fnm env | source
 end
+
+if exists brew
+    # asdf
+    condsource (brew --prefix asdf)/asdf.fish
+end
