@@ -19,6 +19,10 @@ set -gp fish_user_paths \
     "$HOME/.rbenv/shims" \
     "$HOME/go/bin"
 
+set -l DEV_TOOLS_DIR "$HOME/dev/tools"
+
+set -gx ASDF_DATA_DIR "$DEV_TOOLS_DIR/asdf"
+
 # https://starship.rs
 if exists starship
     starship init fish | source
