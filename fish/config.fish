@@ -23,6 +23,13 @@ set -l DEV_TOOLS_DIR "$HOME/dev/tools"
 
 set -gx ASDF_DATA_DIR "$DEV_TOOLS_DIR/asdf"
 
+# Use VSCode as editor, or default to `nano`.
+if exists code
+    set -gx EDITOR code
+else
+    set -gx EDITOR nano
+end
+
 # https://starship.rs
 if exists starship
     starship init fish | source
