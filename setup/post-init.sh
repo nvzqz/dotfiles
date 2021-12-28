@@ -47,6 +47,7 @@ USER_EMAIL='hello@nikolaivazquez.com'
 
 SSH_ALGO='ed25519'
 SSH_KEY_PATH="$HOME/.ssh/id_$SSH_ALGO"
+SSH_CONFIG_PATH="$HOME/.ssh/config"
 
 if ! [[ -f "$SSH_KEY_PATH" ]]; then
     echo "$SSH_KEY_PATH"
@@ -65,6 +66,23 @@ if ! [[ -f "$SSH_KEY_PATH" ]]; then
     log_success 'Generated SSH key and added it to `ssh-agent`'
 else
     log_skip "SSH setup; found '$SSH_KEY_PATH'"
+fi
+
+# `ssh-add -K` does not persist unless the config enables the keychain.
+SSH_CONFIG_MACOS=$(cat <<EOF
+Host *
+  UseKeychain yes
+EOF
+)
+
+if $OS_IS_MACOS; then
+    if ! [[ -f "$SSH_CONFIG_PATH" ]]; then
+        log_status 'Enabling keychain for SSH…'
+        echo "$SSH_CONFIG_MACOS" > "$SSH_CONFIG_PATH"
+        log_success 'Enabled keychain for SSH'
+    else
+        log_skip "Enabling keychain for SSH; found '$SSH_CONFIG_PATH'"
+    fi
 fi
 
 ################################################################################
