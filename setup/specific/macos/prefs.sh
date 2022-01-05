@@ -108,7 +108,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 
 # Make sidebar use small icons.
-defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+defaults write -g NSTableViewDefaultSizeMode -int 1
 
 ################################################################################
 # General
