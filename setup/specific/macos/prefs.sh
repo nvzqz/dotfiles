@@ -115,6 +115,7 @@ defaults write com.apple.Finder AppleShowAllFiles -bool true
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Open new windows in home folder.
+defaults write com.apple.finder NewWindowTarget     -string PfHm
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME"
 
 # Show all items on desktop.
