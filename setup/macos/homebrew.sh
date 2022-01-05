@@ -56,11 +56,18 @@ HOMEBREW_CASK_DRIVERS=(
     logitech-options
 )
 
+# Packages from https://github.com/Homebrew/homebrew-cask-fonts.
+HOMEBREW_CASK_FONTS=(
+    fira-code
+    fira-mono
+)
+
 # All packages concatenated, giving casks the appropriate prefixes.
 HOMEBREW_PKGS=(
     "${HOMEBREW_FORMULAE[@]}"
     "${HOMEBREW_CASKS[@]/#/homebrew/cask/}"
     "${HOMEBREW_CASK_DRIVERS[@]/#/homebrew/cask-drivers/}"
+    "${HOMEBREW_CASK_FONTS[@]/#/homebrew/cask-fonts/font-}"
 )
 
 HOMEBREW_PKG_COUNT="${#HOMEBREW_PKGS[@]}"
