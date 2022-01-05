@@ -17,6 +17,10 @@ function batplist --description 'bat property list as XML'
     catplist $argv | bat -l xml
 end
 
+function codeplist --description 'open property list as XML in vscode'
+    catplist $argv | code -
+end
+
 function pbsort --description 'sort lines in pasteboard'
     pbpaste $argv | sort | pbcopy
 end
