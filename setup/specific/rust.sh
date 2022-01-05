@@ -31,6 +31,9 @@ RUST_CRATES=(
     ripgrep # rg
     starship
     tokei
+
+    cargo-bloat
+    cargo-expand
 )
 
 RUSTFLAGS='-C target-cpu=native' "$HOME/.cargo/bin/cargo" install "${RUST_CRATES[@]}"
