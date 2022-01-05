@@ -101,9 +101,9 @@ defaults write com.apple.dock largesize -int 64
 # Make icons for hidden apps translucent.
 defaults write com.apple.dock showhidden -bool true
 
-# Encodes an item to be usable as a dock tile.
+# Encodes an array of items to be usable as dock tiles.
 #
-# Spacers are encoded as '-'.
+# Spacers are provided as '-'.
 #
 # What some values mean:
 # - arrangement: "sort by…"
@@ -112,53 +112,66 @@ defaults write com.apple.dock showhidden -bool true
 # - showas: "view content as…"
 #   1. Fan
 #   2. Grid
-function encode_dock_tile() {
-    local tile="$1"
+function encode_dock_tiles() {
+    local result='<array>'
 
-    case "$tile" in
-    '-')
-        echo '<dict>
-            <key>tile-data</key>
-            <dict/>
-            <key>tile-type</key>
-            <string>small-spacer-tile</string>
-        </dict>'
-        ;;
-    *.app)
-        echo "<dict>
-            <key>tile-data</key>
-            <dict>
-                <key>file-data</key>
+    for tile in "$@"; do
+        # Encode spacer tile.
+        if [[ "$tile" == '-' ]]; then
+            result+='<dict>
+                <key>tile-data</key>
+                <dict/>
+                <key>tile-type</key>
+                <string>small-spacer-tile</string>
+            </dict>'
+            continue
+        fi
+
+        # Skip tile if it doesn't exist.
+        if [[ ! -d "$tile" ]]; then
+            continue
+        fi
+
+        if [[ "$tile" == *.app ]]; then
+            # Encode app tile.
+            result+="<dict>
+                <key>tile-data</key>
                 <dict>
-                    <key>_CFURLString</key>
-                    <string>$tile</string>
-                    <key>_CFURLStringType</key>
-                    <integer>0</integer>
+                    <key>file-data</key>
+                    <dict>
+                        <key>_CFURLString</key>
+                        <string>$tile</string>
+                        <key>_CFURLStringType</key>
+                        <integer>0</integer>
+                    </dict>
                 </dict>
-            </dict>
-        </dict>"
-        ;;
-    *)
-        # Treat all others as directories.
-        echo "<dict>
-            <key>tile-data</key>
-            <dict>
-                <key>file-data</key>
+            </dict>"
+        else
+            # Encode directory tile.
+            result+="<dict>
+                <key>tile-data</key>
                 <dict>
-                    <key>_CFURLString</key>
-                    <string>$tile</string>
-                    <key>_CFURLStringType</key>
-                    <integer>0</integer>
+                    <key>file-data</key>
+                    <dict>
+                        <key>_CFURLString</key>
+                        <string>$tile</string>
+                        <key>_CFURLStringType</key>
+                        <integer>0</integer>
+                    </dict>
+                    <key>arrangement</key>
+                    <integer>2</integer>
+                    <key>showas</key>
+                    <integer>2</integer>
                 </dict>
-                <key>arrangement</key>
-                <integer>2</integer>
-                <key>showas</key>
-                <integer>2</integer>
-            </dict>
-            <key>tile-type</key>
-            <string>directory-tile</string>
-        </dict>"
-    esac
+                <key>tile-type</key>
+                <string>directory-tile</string>
+            </dict>"
+        fi
+    done
+
+    result+='</array>'
+
+    echo "$result"
 }
 
 DOCK_APPS=(
@@ -184,20 +197,12 @@ DOCK_DIRS=(
 )
 
 # Add apps to dock.
-defaults write com.apple.dock persistent-apps -array
-for app in "${DOCK_APPS[@]}"; do
-    if [[ "$app" == '-' || -d "$app" ]]; then
-        defaults write com.apple.dock persistent-apps \
-            -array-add "$(encode_dock_tile "$app")"
-    fi
-done
+defaults write com.apple.dock persistent-apps \
+    "$(encode_dock_tiles "${DOCK_APPS[@]}")"
 
 # Add dirs to dock.
-defaults write com.apple.dock persistent-others -array
-for dir in "${DOCK_DIRS[@]}"; do
-    defaults write com.apple.dock persistent-others \
-        -array-add "$(encode_dock_tile "$dir")"
-done
+defaults write com.apple.dock persistent-others \
+    "$(encode_dock_tiles "${DOCK_DIRS[@]}")"
 
 ################################################################################
 # Finder
