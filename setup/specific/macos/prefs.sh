@@ -150,13 +150,13 @@ function encode_dock_tile() {
                     <key>_CFURLStringType</key>
                     <integer>0</integer>
                 </dict>
-				<key>arrangement</key>
-				<integer>2</integer>
-				<key>showas</key>
-				<integer>2</integer>
+                <key>arrangement</key>
+                <integer>2</integer>
+                <key>showas</key>
+                <integer>2</integer>
             </dict>
-			<key>tile-type</key>
-			<string>directory-tile</string>
+            <key>tile-type</key>
+            <string>directory-tile</string>
         </dict>"
     esac
 }
