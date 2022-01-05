@@ -187,8 +187,10 @@ for app in 'com.apple.dt.Xcode' 'com.apple.Preview'; do
 done
 
 # Expand save and print panels by default.
-defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
-defaults write -g PMPrintingExpandedStateForPrint -bool true
+defaults write -g NSNavPanelExpandedStateForSaveMode  -bool true
+defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
+defaults write -g PMPrintingExpandedStateForPrint     -bool true
+defaults write -g PMPrintingExpandedStateForPrint2    -bool true
 
 # Save new documents to local drive by default.
 defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
