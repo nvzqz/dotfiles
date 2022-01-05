@@ -9,7 +9,7 @@
 set -euo pipefail
 
 realpath() {
-    cd -- "$1" >/dev/null 2>&1 && pwd -P
+    cd -- "$1" &>/dev/null && pwd -P
 }
 
 readonly SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"

@@ -1,4 +1,4 @@
-readonly MACOS_SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
+readonly MACOS_SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
 
 source "$MACOS_SCRIPT_DIR/homebrew.sh"
 source "$MACOS_SCRIPT_DIR/prefs.sh"
