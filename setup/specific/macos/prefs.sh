@@ -111,6 +111,15 @@ defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 defaults write -g NSTableViewDefaultSizeMode -int 1
 
 ################################################################################
+# User Interface
+################################################################################
+
+# Set system theme to red.
+defaults write -g AppleAquaColorVariant -int 0
+defaults write -g AppleAccentColor -int 0
+defaults write -g AppleHighlightColor '1.000000 0.733333 0.721569 Red'
+
+################################################################################
 # General
 ################################################################################
 
