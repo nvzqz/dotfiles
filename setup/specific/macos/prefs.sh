@@ -173,6 +173,9 @@ done
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 defaults write -g PMPrintingExpandedStateForPrint -bool true
 
+# Save new documents to local drive by default.
+defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
 # Disable system-wide resume.
 defaults write -g NSQuitAlwaysKeepsWindows -bool false
 
