@@ -91,8 +91,9 @@ defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 # Disable recent apps section.
 defaults write com.apple.dock show-recents -bool false
 
-# Set size to something reasonable.
+# Set size to something reasonable and lock it.
 defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock size-immutable -bool true
 
 # Enable magnification with specific size.
 defaults write com.apple.dock magnification -bool true
