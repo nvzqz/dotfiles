@@ -107,6 +107,9 @@ defaults write com.apple.dock showhidden -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# Make path bar relative to home folder.
+defaults write com.apple.finder PathBarRootAtHome -bool true
+
 # Show extensions and hidden files.
 defaults write -g AppleShowAllExtensions -bool true
 defaults write com.apple.Finder AppleShowAllFiles -bool true
