@@ -90,12 +90,16 @@ defaults write com.apple.dock tilesize -int 48
 defaults write com.apple.dock magnification -bool true
 defaults write com.apple.dock largesize -int 64
 
+# Make icons for hidden apps translucent.
+defaults write com.apple.dock showhidden -bool true
+
 ################################################################################
 # Finder
 ################################################################################
 
-# Show full path in bottom bar.
+# Show full path and status bars in bottom.
 defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
 
 # Show extensions and hidden files.
 defaults write -g AppleShowAllExtensions -bool true
@@ -119,6 +123,28 @@ defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 # Make sidebar use small icons.
 defaults write -g NSTableViewDefaultSizeMode -int 1
 
+function set_finder_desktop_icon_setting() {
+    "$PLIST_BUDDY" -c \
+        "Set ':DesktopViewSettings:IconViewSettings:$1' '$2'" \
+        "$HOME/Library/Preferences/com.apple.finder.plist"
+}
+
+# Show desktop icon item info.
+set_finder_desktop_icon_setting showItemInfo true
+
+# Arrange desktop icons by kind.
+set_finder_desktop_icon_setting arrangeBy kind
+
+# Set desktop icon grid spacing and icon size.
+set_finder_desktop_icon_setting gridSpacing 100 # max
+set_finder_desktop_icon_setting iconSize 48
+
+# Set desktop labels on right.
+set_finder_desktop_icon_setting labelOnBottom false
+
+# Set desktop text size.
+set_finder_desktop_icon_setting textSize 11
+
 ################################################################################
 # User Interface
 ################################################################################
@@ -132,9 +158,19 @@ defaults write -g AppleHighlightColor '1.000000 0.733333 0.721569 Red'
 # General
 ################################################################################
 
+# Expand save and print panels by default.
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+defaults write -g PMPrintingExpandedStateForPrint -bool true
+
+# Disable system-wide resume.
+defaults write -g NSQuitAlwaysKeepsWindows -bool false
+
 # Disable '.DS_Store' on network and USB drives.
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Disable time machine using new drives for backup.
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Make key repeat very quick.
 #
