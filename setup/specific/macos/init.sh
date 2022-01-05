@@ -1,5 +1,24 @@
 readonly MACOS_SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
 
+################################################################################
+# Xcode
+################################################################################
+
+log_status 'Setting up Xcode…'
+
+if ! xcodebuild -license status; then
+    sudo xcodebuild -license accept
+else
+
+# Install additional required components.
+xcodebuild -runFirstLaunch
+
+log_success 'Set up Xcode'
+
+################################################################################
+# Other
+################################################################################
+
 source "$MACOS_SCRIPT_DIR/homebrew.sh"
 source "$MACOS_SCRIPT_DIR/prefs.sh"
 
