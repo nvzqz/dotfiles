@@ -117,6 +117,12 @@ defaults write com.apple.Finder AppleShowAllFiles -bool true
 # Disable extension change warning.
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+# Show folders first when sorting.
+defaults write com.apple.finder _FXSortFoldersFirst -bool false
+
+# Prefer column view.
+defaults write com.apple.finder FXPreferredViewStyle -string clmv
+
 # Open new windows in home folder.
 defaults write com.apple.finder NewWindowTarget     -string PfHm
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME"
