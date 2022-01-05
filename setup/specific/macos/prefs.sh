@@ -39,8 +39,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 ################################################################################
 
 # Use 24 hour time with seconds.
-#
-# TODO: Set this in such a way that it'll trigger in System Preferences.
+defaults write -g AppleICUForce24HourTime -bool true
 defaults write com.apple.menuextra.clock IsAnalog    -bool false
 defaults write com.apple.menuextra.clock ShowSeconds -bool true
 defaults write com.apple.menuextra.clock DateFormat  -string 'EEE MMM d  H:mm:ss'
