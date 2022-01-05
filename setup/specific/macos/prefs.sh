@@ -12,6 +12,9 @@ plist_set_or_add() {
 
 # TODO: Check out https://github.com/kristovatlas/osx-config-check
 
+# Prevent modifying system prefs while script is running.
+killall 'System Preferences' &>/dev/null || true
+
 ################################################################################
 # Screenshots
 ################################################################################
@@ -259,7 +262,6 @@ AFFECTED_PROCS=(
     SystemUIServer
 
     cfprefsd
-    'System Preferences'
 )
 
 killall "${AFFECTED_PROCS[@]}" || true
