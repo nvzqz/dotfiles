@@ -82,6 +82,10 @@ defaults write com.apple.dock show-recents -bool false
 # Set size to something reasonable.
 defaults write com.apple.dock tilesize -int 48
 
+# Enable magnification with specific size.
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 64
+
 ################################################################################
 # Finder
 ################################################################################
