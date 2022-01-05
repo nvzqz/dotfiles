@@ -73,7 +73,6 @@ defaults write com.apple.menuextra.clock DateFormat  -string 'EEE MMM d  H:mm:ss
 # Dock
 #
 # TODO: Add 'SCREENSHOTS_PATH' dir to dock.
-# TODO: Set apps in wanted order with spacers.
 ################################################################################
 
 # Enable autohide, with no show/hide delay.
@@ -101,6 +100,60 @@ defaults write com.apple.dock largesize -int 64
 
 # Make icons for hidden apps translucent.
 defaults write com.apple.dock showhidden -bool true
+
+# Encodes an item to be usable as a dock tile.
+#
+# Spacers are encoded as '-'.
+function encode_dock_tile() {
+    local tile="$1"
+
+    if [[ "$tile" == '-' ]]; then
+        echo '<dict>
+            <key>tile-data</key>
+            <dict/>
+            <key>tile-type</key>
+            <string>small-spacer-tile</string>
+        </dict>'
+    else
+        echo "<dict>
+            <key>tile-data</key>
+            <dict>
+                <key>file-data</key>
+                <dict>
+                    <key>_CFURLString</key>
+                    <string>$tile</string>
+                    <key>_CFURLStringType</key>
+                    <integer>0</integer>
+                </dict>
+            </dict>
+        </dict>"
+    fi
+}
+
+DOCK_APPS=(
+    '/System/Applications/Launchpad.app'
+    -
+    '/Applications/Safari.app'
+    '/Applications/Spotify.app'
+    '/Applications/Obsidian.app'
+    -
+    '/System/Applications/Messages.app'
+    '/Applications/Signal.app'
+    '/Applications/Discord.app'
+    '/Applications/Slack.app'
+    -
+    '/Applications/iTerm.app'
+    '/Applications/Visual Studio Code.app'
+    '/Applications/Xcode.app'
+)
+
+defaults write com.apple.dock persistent-apps -array
+for app in "${DOCK_APPS[@]}"; do
+    if [[ "$app" == '-' || -d "$app" ]]; then
+        defaults write com.apple.dock persistent-apps \
+            -array-add "$(encode_dock_tile "$app")"
+    fi
+done
 
 ################################################################################
 # Finder
