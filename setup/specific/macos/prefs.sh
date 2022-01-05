@@ -227,6 +227,9 @@ defaults write com.apple.finder FXPreferredViewStyle -string clmv
 defaults write com.apple.finder NewWindowTarget     -string PfHm
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME"
 
+# Disable tags list in sidebar.
+defaults write com.apple.finder ShowRecentTags -boolean false
+
 # Show all items on desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
