@@ -104,17 +104,27 @@ defaults write com.apple.dock showhidden -bool true
 # Encodes an item to be usable as a dock tile.
 #
 # Spacers are encoded as '-'.
+#
+# What some values mean:
+# - arrangement: "sort by…"
+#   2. Date added
+#   5. Kind
+# - showas: "view content as…"
+#   1. Fan
+#   2. Grid
 function encode_dock_tile() {
     local tile="$1"
 
-    if [[ "$tile" == '-' ]]; then
+    case "$tile" in
+    '-')
         echo '<dict>
             <key>tile-data</key>
             <dict/>
             <key>tile-type</key>
             <string>small-spacer-tile</string>
         </dict>'
-    else
+        ;;
+    *.app)
         echo "<dict>
             <key>tile-data</key>
             <dict>
@@ -127,7 +137,28 @@ function encode_dock_tile() {
                 </dict>
             </dict>
         </dict>"
-    fi
+        ;;
+    *)
+        # Treat all others as directories.
+        echo "<dict>
+            <key>tile-data</key>
+            <dict>
+                <key>file-data</key>
+                <dict>
+                    <key>_CFURLString</key>
+                    <string>$tile</string>
+                    <key>_CFURLStringType</key>
+                    <integer>0</integer>
+                </dict>
+				<key>arrangement</key>
+				<integer>2</integer>
+				<key>showas</key>
+				<integer>2</integer>
+            </dict>
+			<key>tile-type</key>
+			<string>directory-tile</string>
+        </dict>"
+    esac
 }
 
 DOCK_APPS=(
@@ -147,12 +178,25 @@ DOCK_APPS=(
     '/Applications/Xcode.app'
 )
 
+DOCK_DIRS=(
+    "$SCREENSHOTS_PATH"
+    "$HOME/Downloads"
+)
+
+# Add apps to dock.
 defaults write com.apple.dock persistent-apps -array
 for app in "${DOCK_APPS[@]}"; do
     if [[ "$app" == '-' || -d "$app" ]]; then
         defaults write com.apple.dock persistent-apps \
             -array-add "$(encode_dock_tile "$app")"
     fi
+done
+
+# Add dirs to dock.
+defaults write com.apple.dock persistent-others -array
+for dir in "${DOCK_DIRS[@]}"; do
+    defaults write com.apple.dock persistent-others \
+        -array-add "$(encode_dock_tile "$dir")"
 done
 
 ################################################################################
