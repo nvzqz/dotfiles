@@ -4,6 +4,23 @@ source "$MACOS_SCRIPT_DIR/homebrew.sh"
 source "$MACOS_SCRIPT_DIR/prefs.sh"
 
 ################################################################################
+# Set Computer Name
+################################################################################
+
+# TODO: Ask user to input hostname up front.
+#
+# NEW_HOSTNAME=''
+# for name in ComputerName HostName LocalHostName; do
+#     sudo scutil --set "$name" "$NEW_HOSTNAME"
+# done
+#
+# for key in NetBIOSName ServerDescription; do
+#     sudo defaults write \
+#         '/Library/Preferences/SystemConfiguration/com.apple.smb.server' \
+#         "$key" -string "$NEW_HOSTNAME"
+# done
+
+################################################################################
 # Set Shell to Fish
 ################################################################################
 
