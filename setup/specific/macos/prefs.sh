@@ -168,6 +168,9 @@ defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 # Make sidebar use small icons.
 defaults write -g NSTableViewDefaultSizeMode -int 1
 
+# Make interface style dark.
+defaults write -g AppleInterfaceStyle -string Dark
+
 # Set system theme to red.
 defaults write -g AppleAquaColorVariant -int 0
 defaults write -g AppleAccentColor -int 0
