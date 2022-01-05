@@ -164,6 +164,11 @@ defaults write -g AppleHighlightColor '1.000000 0.733333 0.721569 Red'
 # General
 ################################################################################
 
+# Disable restoring last file state for Xcode and Preview.
+for app in 'com.apple.dt.Xcode' 'com.apple.Preview'; do
+    defaults write "$app" ApplePersistenceIgnoreState -bool true
+done
+
 # Expand save and print panels by default.
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 defaults write -g PMPrintingExpandedStateForPrint -bool true
