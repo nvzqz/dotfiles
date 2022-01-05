@@ -17,9 +17,15 @@ plist_set_or_add() {
 ################################################################################
 
 SCREENSHOTS_PATH="$HOME/Pictures/Screenshots"
+SCREENSHOTS_PATH_SIM="$SCREENSHOTS_PATH/Simulator"
 
-mkdir -p "$SCREENSHOTS_PATH"
-defaults write com.apple.screencapture location "$SCREENSHOTS_PATH"
+mkdir -p "$SCREENSHOTS_PATH_SIM"
+
+# Set host screenshot path.
+defaults write com.apple.screencapture location -string "$SCREENSHOTS_PATH"
+
+# Set simulator screenshot path.
+defaults write com.apple.iphonesimulator ScreenShotSaveLocation -string "$SCREENSHOTS_PATH_SIM"
 
 # Disable screenshot preview and shadows.
 defaults write com.apple.screencapture show-thumbnail -bool false
