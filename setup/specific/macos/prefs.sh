@@ -104,6 +104,12 @@ defaults write com.apple.Finder AppleShowAllFiles -bool true
 # Disable extension change warning.
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+# Show all items on desktop.
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
 # Disable toolbar title delay on 11 (Big Sur) and later.
 defaults write -g NSToolbarTitleViewRolloverDelay -float 0
 
