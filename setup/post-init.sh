@@ -12,7 +12,7 @@ realpath() {
     cd -- "$1" >/dev/null 2>&1 && pwd -P
 }
 
-SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+readonly SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
 cd "$SCRIPT_DIR/.."
 
@@ -107,7 +107,7 @@ log_success 'Configured `git`'
 ################################################################################
 
 if $OS_IS_MACOS; then
-    source "$SCRIPT_DIR/macos/init.sh"
+    source "$SCRIPT_DIR/specific/macos/init.sh"
 fi
 
 # TODO:
@@ -122,3 +122,9 @@ if $OS_IS_MACOS; then
     # cat "$SSH_KEY_PATH.pub" | pbcopy
     log_todo "Add public key '$SSH_KEY_PATH.pub' to GitHub: https://github.com/settings/ssh/new"
 fi
+
+################################################################################
+# Dev Config
+################################################################################
+
+source "$SCRIPT_DIR/specific/rust.sh"
