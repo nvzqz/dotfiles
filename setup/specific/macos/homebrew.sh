@@ -58,8 +58,27 @@ HOMEBREW_CASK_DRIVERS=(
 
 # Packages from https://github.com/Homebrew/homebrew-cask-fonts.
 HOMEBREW_CASK_FONTS=(
+    bree-serif
+    carter-one
     fira-code
     fira-mono
+    flow-block
+    flow-circular
+    flow-rounded
+    gabriela
+    kiwi-maru
+    kurale
+    lora
+    marko-one
+    merriweather
+    merriweather-sans
+    new-tegomin
+    poiret-one
+    roboto
+    roboto-flex
+    roboto-mono
+    roboto-slab
+    zilla-slab
 )
 
 # All packages concatenated, giving casks the appropriate prefixes.
