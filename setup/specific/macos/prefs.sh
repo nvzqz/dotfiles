@@ -21,6 +21,10 @@ SCREENSHOTS_PATH="$HOME/Pictures/Screenshots"
 mkdir -p "$SCREENSHOTS_PATH"
 defaults write com.apple.screencapture location "$SCREENSHOTS_PATH"
 
+# Disable screenshot preview and shadows.
+defaults write com.apple.screencapture show-thumbnail -bool false
+defaults write com.apple.screencapture disable-shadow -bool true
+
 ################################################################################
 # Clock
 ################################################################################
@@ -112,9 +116,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
-
-# Disable screenshot preview.
-defaults write com.apple.screencapture show-thumbnail -bool false
 
 ################################################################################
 # Shortcuts
