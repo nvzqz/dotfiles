@@ -7,6 +7,16 @@ set -ga fish_user_paths \
     '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin' \
     '/Library/Developer/CommandLineTools/usr/bin'
 
+function catplist --description 'cat property list as XML'
+    for arg in $argv
+        plutil -convert xml1 $arg -o -
+    end
+end
+
+function batplist --description 'bat property list as XML'
+    catplist $argv | bat -l xml
+end
+
 function pbsort --description 'sort lines in pasteboard'
     pbpaste $argv | sort | pbcopy
 end
