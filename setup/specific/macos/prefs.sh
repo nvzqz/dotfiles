@@ -123,12 +123,6 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-# Disable toolbar title delay on 11 (Big Sur) and later.
-defaults write -g NSToolbarTitleViewRolloverDelay -float 0
-
-# Make sidebar use small icons.
-defaults write -g NSTableViewDefaultSizeMode -int 1
-
 function set_finder_desktop_icon_setting() {
     "$PLIST_BUDDY" -c \
         "Set ':DesktopViewSettings:IconViewSettings:$1' '$2'" \
@@ -154,6 +148,12 @@ set_finder_desktop_icon_setting textSize 11
 ################################################################################
 # User Interface
 ################################################################################
+
+# Disable toolbar title delay on 11 (Big Sur) and later.
+defaults write -g NSToolbarTitleViewRolloverDelay -float 0
+
+# Make sidebar use small icons.
+defaults write -g NSTableViewDefaultSizeMode -int 1
 
 # Set system theme to red.
 defaults write -g AppleAquaColorVariant -int 0
