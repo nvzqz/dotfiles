@@ -5,6 +5,7 @@ HOMEBREW_FORMULAE=(
     ffmpeg
     fish
     gnutls
+    jq
     mas
     nmap
     openjdk
