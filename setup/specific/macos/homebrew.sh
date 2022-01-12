@@ -4,6 +4,7 @@ HOMEBREW_FORMULAE=(
     exiftool
     ffmpeg
     fish
+    fossil
     gnutls
     jq
     mas
