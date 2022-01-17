@@ -8,7 +8,7 @@ log_status 'Setting up Xcode…'
 
 if ! xcodebuild -license status; then
     sudo xcodebuild -license accept
-else
+fi
 
 # Install additional required components.
 xcodebuild -runFirstLaunch
