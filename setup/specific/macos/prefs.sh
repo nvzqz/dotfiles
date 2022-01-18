@@ -297,9 +297,6 @@ for app in 'com.apple.dt.Xcode' 'com.apple.Preview'; do
     defaults write "$app" ApplePersistenceIgnoreState -bool true
 done
 
-# Disable iTunes/Music responding to keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist &>/dev/null
-
 # Expand save and print panels by default.
 defaults write -g NSNavPanelExpandedStateForSaveMode  -bool true
 defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
