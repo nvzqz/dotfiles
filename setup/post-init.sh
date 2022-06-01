@@ -28,11 +28,18 @@ OS_IS_MACOS='false'
 OS_IS_LINUX='false'
 
 OS="$(uname)"
-if [[ "${OS}" == 'Darwin' ]]; then
-    OS_IS_MACOS='true'
-else
-    log_fatal "The operating system '$OS' is not supported"
-fi
+
+case "$OS" in
+    Darwin)
+        OS_IS_MACOS='true'
+        ;;
+    Linux)
+        OS_IS_LINUX='true'
+        ;;
+    *)
+        log_fatal "The operating system '$OS' is not supported"
+        ;;
+esac
 
 ################################################################################
 # Config Variables
@@ -108,6 +115,8 @@ log_success 'Configured `git`'
 
 if $OS_IS_MACOS; then
     source "$SCRIPT_DIR/specific/macos/init.sh"
+elif $OS_IS_LINUX; then
+    source "$SCRIPT_DIR/specific/linux/init.sh"
 fi
 
 # TODO:

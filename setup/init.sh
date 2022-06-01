@@ -23,26 +23,27 @@ set -euo pipefail
 
 # ANSI styling (https://en.wikipedia.org/wiki/ANSI_escape_code#Description).
 ANSI_CSI=$'\033['
+STYLE_RED="${ANSI_CSI}0;31;1m"
 STYLE_GREEN="${ANSI_CSI}0;32;1m"
 STYLE_MAGENTA="${ANSI_CSI}0;35;1m"
 STYLE_CYAN="${ANSI_CSI}0;36;1m"
 STYLE_OFF="${ANSI_CSI}0m"
 
 log_fatal() {
-    echo "  ${STYLE_RED}fatal:${STYLE_OFF} $@"
+    echo "  ${STYLE_RED}fatal:${STYLE_OFF} $@" >&2
     exit 1
 }
 
 log_success() {
-    echo "${STYLE_GREEN}success:${STYLE_OFF} $@"
+    echo "${STYLE_GREEN}success:${STYLE_OFF} $@" >&2
 }
 
 log_status() {
-    echo " ${STYLE_MAGENTA}status:${STYLE_OFF} $@"
+    echo " ${STYLE_MAGENTA}status:${STYLE_OFF} $@" >&2
 }
 
 log_skip() {
-    echo "   ${STYLE_CYAN}skip:${STYLE_OFF} $@"
+    echo "   ${STYLE_CYAN}skip:${STYLE_OFF} $@" >&2
 }
 
 ################################################################################
@@ -53,14 +54,23 @@ OS_IS_MACOS='false'
 OS_IS_LINUX='false'
 
 OS="$(uname)"
-if [[ "${OS}" == "Darwin" ]]; then
-    OS_IS_MACOS='true'
-else
-    log_fatal "The operating system '$OS' is not supported"
-fi
+
+case "$OS" in
+    Darwin)
+        OS_IS_MACOS='true'
+        ;;
+    Linux)
+        OS_IS_LINUX='true'
+        ;;
+    *)
+        log_fatal "The operating system '$OS' is not supported"
+        ;;
+esac
 
 ################################################################################
-# macOS: Install Xcode Command Line Tools for `git`
+# Git
+#
+# Ensure Git is installed or install it on macOS.
 ################################################################################
 
 if $OS_IS_MACOS; then
@@ -83,6 +93,10 @@ if $OS_IS_MACOS; then
 
     # Make Xcode CLT be found before other tools.
     export PATH="$XC_CLT_BIN:$PATH"
+fi
+
+if [[ -z "${GIT_PATH:-}" ]]; then
+    GIT_PATH=$(which git || log_fatal 'Git not found')
 fi
 
 ################################################################################

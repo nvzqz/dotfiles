@@ -36,4 +36,14 @@ RUST_CRATES=(
     cargo-expand
 )
 
-RUSTFLAGS='-C target-cpu=native' "$HOME/.cargo/bin/cargo" install "${RUST_CRATES[@]}"
+# Run the installation either in the Silverblue 'dev' toolbox or on the host.
+CARGO_INSTALL_CMD=(
+    "$HOME/.cargo/bin/cargo" install "${RUST_CRATES[@]}"
+)
+
+if "${OS_IS_SILVERBLUE:-false}"; then
+    # FIXME: Pass `RUSTFLAGS` env var.
+    tb_run "${CARGO_INSTALL_CMD[@]}"
+else
+    RUSTFLAGS='-C target-cpu=native' "${CARGO_INSTALL_CMD[@]}"
+fi
