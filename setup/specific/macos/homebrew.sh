@@ -53,11 +53,6 @@ HOMEBREW_CASKS=(
     zulip
 )
 
-# Packages from https://github.com/Homebrew/homebrew-cask-drivers.
-HOMEBREW_CASK_DRIVERS=(
-    logitech-options
-)
-
 # Packages from https://github.com/Homebrew/homebrew-cask-fonts.
 HOMEBREW_CASK_FONTS=(
     bree-serif
@@ -87,7 +82,6 @@ HOMEBREW_CASK_FONTS=(
 HOMEBREW_PKGS=(
     "${HOMEBREW_FORMULAE[@]}"
     "${HOMEBREW_CASKS[@]/#/homebrew/cask/}"
-    "${HOMEBREW_CASK_DRIVERS[@]/#/homebrew/cask-drivers/}"
     "${HOMEBREW_CASK_FONTS[@]/#/homebrew/cask-fonts/font-}"
 )
 
