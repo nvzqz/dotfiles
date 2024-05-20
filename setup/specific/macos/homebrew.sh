@@ -53,7 +53,7 @@ HOMEBREW_CASKS=(
     zulip
 )
 
-# Packages from https://github.com/Homebrew/homebrew-cask-fonts.
+# Fonts from https://github.com/Homebrew/homebrew-cask.
 HOMEBREW_CASK_FONTS=(
     bree-serif
     carter-one
@@ -82,7 +82,7 @@ HOMEBREW_CASK_FONTS=(
 HOMEBREW_PKGS=(
     "${HOMEBREW_FORMULAE[@]}"
     "${HOMEBREW_CASKS[@]/#/homebrew/cask/}"
-    "${HOMEBREW_CASK_FONTS[@]/#/homebrew/cask-fonts/font-}"
+    "${HOMEBREW_CASK_FONTS[@]/#/homebrew/cask/font-}"
 )
 
 HOMEBREW_PKG_COUNT="${#HOMEBREW_PKGS[@]}"
