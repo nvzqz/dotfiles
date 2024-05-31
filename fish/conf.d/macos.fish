@@ -7,6 +7,9 @@ set -ga fish_user_paths \
     '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin' \
     '/Library/Developer/CommandLineTools/usr/bin'
 
+# Fix `cargo install` linking to system libraries.
+set -gx LIBRARY_PATH '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+
 function catplist --description 'cat property list as XML'
     for arg in $argv
         plutil -convert xml1 $arg -o -
